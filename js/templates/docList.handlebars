@@ -1,0 +1,18 @@
+<script id="docList" type="text/x-handlebars-template">
+<table>
+			<thead>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Modified by</th>
+				<th>Last Modified</th>
+			</thead>
+			{{#each items}}
+
+			<tr>
+				<td><a href="{{Path}}" class="ms-fontColor-white">{{Title}}</a> Created by Author => {{splitDisplayNames Author}}
+                {{#if LastModifiedTime}} - and last modified by {{splitSPUser EditorOWSUSER 'displayName'}} ({{moment LastModifiedTime
+                "DD/MM/YYYY"}}) {{/if}}</td>
+			</tr>
+			{{/each}}
+		</table>
+</script>

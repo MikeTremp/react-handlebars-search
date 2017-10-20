@@ -1,0 +1,67 @@
+<content id="metadata" type="x-handlebars-metadata">
+    { "fields": ["SiteName", "Path", "LastModifiedTime", "Title","EditorOWSUSER","Author"], "query": "", "sort": "" }
+</content>
+
+<content id="template" type="x-handlebars-template">
+    <style>
+        .myRow {
+            padding: 25px;
+        }
+
+        .myRow a.disabled,
+        .myRow a.disabled:visited,
+        .myRow a.disabled:hover {
+            color: #a6a6a6;
+            text-decoration: none;
+        }
+
+    </style>
+  
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            $('.myRow').css('background-color', '#ffffff');
+        });
+
+    </script>
+
+	<script id="docList" type="text/x-handlebars-template">
+
+
+        <h1 class="ms-font-xl ms-fontColor-black">{{wpTitle}}</h1>
+
+		<table>
+			<thead>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Modified by</th>
+				<th>Last Modified</th>
+			</thead>
+			{{#each items}}
+			
+			<tr>
+				<td><a href="{{Path}}" class="ms-fontColor-black">{{getFileNameFromPath Path}}</a></td>
+				<td>{{splitDisplayNames Author}}</td>
+				<td>{{splitSPUser EditorOWSUSER 'displayName'}}</td>
+				<td>{{moment LastModifiedTime "DD/MM/YYYY"}}</td>
+			</tr>
+			{{/each}}
+		</table>
+		<br/>
+		<br/>
+		        <a id="prevPage" class="ms-fontColor-black" href="javascript:;">Previous</a> <a id="nextPage" class="ms-fontColor-black"
+            href="javascript:;">Next</a>
+</script>
+
+<script type="text/javascript">
+
+	//$( document ).ready(function() {
+			var source = $("#docList").html();
+			document.getElementById("myContent").innerHTML = source;
+	//});
+</script>
+
+	
+	<div class="myRow ms-Grid-row ms-bgColor-blueDark ms-fontColor-black myRow" id="myContent"></div>
+
+</content>

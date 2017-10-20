@@ -13,6 +13,7 @@ import { Spinner, SpinnerSize, MessageBar, MessageBarType, Dialog, DialogType } 
 import { ISearchResponse } from "../services/ISearchService";
 import * as strings from 'searchVisualizerStrings';
 import * as uuidv4 from 'uuid/v4';
+import TextHelpers from "../helpers/TextHelpers";
 
 export default class SearchVisualizer extends React.Component<ISearchVisualizerProps, ISearchVisualizerState> {
     private _searchService: SearchService;
@@ -58,6 +59,7 @@ export default class SearchVisualizer extends React.Component<ISearchVisualizerP
         // Load the SharePoint helpers
         Handlebars.registerHelper('splitDisplayNames', spHelpers.splitDisplayNames);
         Handlebars.registerHelper('splitSPUser', spHelpers.splitSPUser);
+        Handlebars.registerHelper('getFileNameFromPath', TextHelpers);
     }
 
     /**
