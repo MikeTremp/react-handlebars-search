@@ -13,7 +13,7 @@ import { Spinner, SpinnerSize, MessageBar, MessageBarType, Dialog, DialogType } 
 import { ISearchResponse } from "../services/ISearchService";
 import * as strings from 'searchVisualizerStrings';
 import * as uuidv4 from 'uuid/v4';
-import TextHelpers from "../helpers/TextHelpers";
+import * as TextHelpers from "../helpers/TextHelpers";
 
 export default class SearchVisualizer extends React.Component<ISearchVisualizerProps, ISearchVisualizerState> {
     private _searchService: SearchService;
@@ -59,7 +59,14 @@ export default class SearchVisualizer extends React.Component<ISearchVisualizerP
         // Load the SharePoint helpers
         Handlebars.registerHelper('splitDisplayNames', spHelpers.splitDisplayNames);
         Handlebars.registerHelper('splitSPUser', spHelpers.splitSPUser);
-        Handlebars.registerHelper('getFileNameFromPath', TextHelpers);
+        Handlebars.registerHelper('getFileNameFromPath', TextHelpers.getFileNameFromPath);
+        Handlebars.registerHelper('getClientNameFromUrl', TextHelpers.getClientNameFromUrl);
+
+        // Register Group-by handlebars extension
+        var handlebars = require('handlebars'),
+        groupBy = require('handlebars-group-by');
+        groupBy.register(Handlebars);
+
     }
 
     /**
@@ -187,7 +194,10 @@ export default class SearchVisualizer extends React.Component<ISearchVisualizerP
             const tmplValues: any = {
                 wpTitle: this.props.title,
                 pageCtx: this.props.context.pageContext,
+
+                // this is bound to {{each items}}
                 items: searchResp.results,
+                
                 totalResults: searchResp.totalResults,
                 totalResultsIncDuplicates: searchResp.totalResultsIncludingDuplicates,
                 calledUrl: searchResp.searchUrl

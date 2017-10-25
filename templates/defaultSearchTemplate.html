@@ -1,5 +1,5 @@
 <content id="metadata" type="x-handlebars-metadata">
-    { "fields": ["SiteName", "Path", "LastModifiedTime", "Title","EditorOWSUSER","Author"], "query": "", "sort": "" }
+    { "fields": ["SPWebUrl", "Path", "LastModifiedTime", "Title","EditorOWSUSER","Author"], "query": "", "sort": "" }
 </content>
 
 <content id="template" type="x-handlebars-template">
@@ -28,7 +28,12 @@
 	<script id="docList" type="text/x-handlebars-template">
 
 
-        <h1 class="ms-font-xl ms-fontColor-black">{{wpTitle}}</h1>
+        <h1>{{wpTitle}}</h1>
+
+		{{#group items by="SPWebUrl"}}
+		
+		<h1 class="ms-font-xl ms-fontColor-black">{{getClientNameFromUrl value}}</h1>
+				
 
 		<table>
 			<thead>
@@ -36,7 +41,9 @@
 				<th>Author</th>
 				<th>Modified by</th>
 				<th>Last Modified</th>
+
 			</thead>
+
 			{{#each items}}
 			
 			<tr>
@@ -46,19 +53,19 @@
 				<td>{{moment LastModifiedTime "DD/MM/YYYY"}}</td>
 			</tr>
 			{{/each}}
+			
 		</table>
 		<br/>
 		<br/>
-		        <a id="prevPage" class="ms-fontColor-black" href="javascript:;">Previous</a> <a id="nextPage" class="ms-fontColor-black"
-            href="javascript:;">Next</a>
+
+		{{/group}}
+
+		<a id="prevPage" class="ms-fontColor-black" href="javascript:;">Previous</a> <a id="nextPage" class="ms-fontColor-black" href="javascript:;">Next</a>
 </script>
 
 <script type="text/javascript">
-
-	//$( document ).ready(function() {
-			var source = $("#docList").html();
-			document.getElementById("myContent").innerHTML = source;
-	//});
+	var source = $("#docList").html();
+	document.getElementById("myContent").innerHTML = source;
 </script>
 
 	
