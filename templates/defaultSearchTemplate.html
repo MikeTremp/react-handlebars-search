@@ -27,13 +27,7 @@
 
 	<script id="docList" type="text/x-handlebars-template">
 
-
         <h1>{{wpTitle}}</h1>
-
-		{{#group items by="SPWebUrl"}}
-		
-		<h1 class="ms-font-xl ms-fontColor-black">{{getClientNameFromUrl value}}</h1>
-				
 
 		<table>
 			<thead>
@@ -41,8 +35,15 @@
 				<th>Author</th>
 				<th>Modified by</th>
 				<th>Last Modified</th>
-
 			</thead>
+
+			{{#group items by="SPWebUrl"}}
+
+			<tr style="column-span: 4;">
+				<td style="font-weight:bold;font-size:18px;padding-top:20px;">
+					{{getClientNameFromUrl value}}
+				</td>
+			</tr>
 
 			{{#each items}}
 			
@@ -53,12 +54,10 @@
 				<td>{{moment LastModifiedTime "DD/MM/YYYY"}}</td>
 			</tr>
 			{{/each}}
-			
+			{{/group}}	
 		</table>
 		<br/>
 		<br/>
-
-		{{/group}}
 
 		<a id="prevPage" class="ms-fontColor-black" href="javascript:;">Previous</a> <a id="nextPage" class="ms-fontColor-black" href="javascript:;">Next</a>
 </script>
