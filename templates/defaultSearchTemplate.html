@@ -29,12 +29,12 @@
 
         <h1>{{wpTitle}}</h1>
 
-		<table>
+		<table style="text-align:left;">
 			<thead>
-				<th>Title</th>
-				<th>Author</th>
-				<th>Modified by</th>
-				<th>Last Modified</th>
+				<th>Titel</th>
+				<th>Autor</th>
+				<th>Geändert von</th>
+				<th>Zuletzt geändert am</th>
 			</thead>
 
 			{{#group items by="SPWebUrl"}}
@@ -48,10 +48,10 @@
 			{{#each items}}
 			
 			<tr>
-				<td><a href="{{Path}}" class="ms-fontColor-black">{{getFileNameFromPath Path}}</a></td>
-				<td>{{splitDisplayNames Author}}</td>
-				<td>{{splitSPUser EditorOWSUSER 'displayName'}}</td>
-				<td>{{moment LastModifiedTime "DD/MM/YYYY"}}</td>
+				<td style="padding-right:10px"><a href="{{Path}}" class="ms-fontColor-black">{{getFileNameFromPath Path}}</a></td>
+				<td style="padding-right:10px">{{splitDisplayNames Author}}</td>
+				<td style="padding-right:10px">{{splitSPUser EditorOWSUSER 'displayName'}}</td>
+				<td style="padding-right:10px">{{moment LastModifiedTime "DD.MM.YYYY"}}</td>
 			</tr>
 			{{/each}}
 			{{/group}}	

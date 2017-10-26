@@ -1,11 +1,11 @@
 Workbench O365
 --------------
 https://m365x410401.sharepoint.com/_layouts/15/workbench.aspx
-
+https://m365x410401.sharepoint.com/Shared%20Documents
 
 WebPart config
 ---------------
-* contenttype:vertragsdokument
+* AND contenttype:vertragsdokument
 Vertragsübersicht
 https://m365x410401.sharepoint.com/Shared%20Documents/defaultSearchTemplate.html
 
